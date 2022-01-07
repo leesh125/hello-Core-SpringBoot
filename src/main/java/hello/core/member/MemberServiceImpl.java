@@ -17,4 +17,9 @@ public class MemberServiceImpl implements MemberService{
     public Member findMember(Long memberId) {
         return memberRepository.findById(memberId);
     }
+
+    // 테스트 용도(config의 두 번 호출? 의 테스트)
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
 }
