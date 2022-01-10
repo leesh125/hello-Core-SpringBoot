@@ -1,5 +1,8 @@
 package hello.core;
 
+import hello.core.member.MemberRepository;
+import hello.core.member.MemoryMemberRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -13,4 +16,8 @@ import org.springframework.context.annotation.FilterType;
 )
 public class AutoAppConfig {
 
+    @Bean(name = "memoryMemberRepository") // 수동 빈 등록 vs 자동 빈 등록 (빈 이름 중복), 수동 빈 등록이 우선권(수동 빈이 자동 빈을 오버라이딩)
+    MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }
 }
