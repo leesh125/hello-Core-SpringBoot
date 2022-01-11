@@ -1,5 +1,6 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
@@ -27,7 +28,7 @@ public class OrderServiceImpl implements OrderService{
 
     // 1. 생성자 주입 - lombok에 의해 자동 생성
     @Autowired // 최근에는 생성자를 딱 1개 두고, @Autowired를 생략하는 방법을 사용
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;               // qualifire로 등록한 것 중 원하는 것 이름 넣어주면 그것이 생성자로 들어감
         this.discountPolicy = discountPolicy;
         // discountPolicy의 하위 구현체 2개가 동시에 스프링 빈으로 등록된 경우
