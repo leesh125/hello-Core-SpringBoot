@@ -29,6 +29,12 @@ public class OrderServiceTest {
 
         Order order = orderService.createOrder(memberId, "itemA", 10000);
         Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
-
     }
+
+//    @Test
+//    void fieldInjectionTest() {
+//        // 필드 주입으로 의존관계를 설정하면 test 할 때 원하는 repo를 설정하지 못한다(해결하려면 set을 사용해서 repo를 주입 해야함)
+//        OrderServiceImpl orderService = new OrderServiceImpl();
+//        orderService.createOrder(1L, "itemA", 10000);
+//    }
 }

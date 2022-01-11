@@ -13,11 +13,42 @@ public class OrderServiceImpl implements OrderService{
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
+    /*
+        의존 관계 주입 방법
+        1. 생성자 주입
+        2. 수정자 주입(setter 주입)
+        3. 필드 주입
+        4. 일반 메서드 주입
+     */
+
+    // 1. 생성자 주입
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
+
+    /* 2. 수정자 주입(setter 주입)  // 외부에서 수정이 가능하기에 비추
+    @Autowired
+    public void setMemberRepository(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+    @Autowired
+    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+        this.discountPolicy = discountPolicy;
+    }
+
+       3. 필드 주입  // 외부에서 변경이 불가능해서 비추
+         @Autowired private MemberRepository memberRepository;
+         @Autowired private DiscountPolicy discountPolicy;
+
+       4. 일반 메서드 주입
+       @Autowired
+       public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+            this.memberRepository = memberRepository;
+            this.discountPolicy = discountPolicy;
+       }
+    */
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
