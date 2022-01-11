@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderServiceImpl implements OrderService{
 
+    // final을 통해 생성자에서 값이 설정되지 않을 경우 오류 발생
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
