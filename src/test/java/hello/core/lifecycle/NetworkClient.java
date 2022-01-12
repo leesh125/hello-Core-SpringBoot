@@ -1,6 +1,9 @@
 package hello.core.lifecycle;
 
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 public class NetworkClient {
 
     private String url;
@@ -27,13 +30,15 @@ public class NetworkClient {
         System.out.println("close : " + url);
     }
 
-    public void init() throws Exception { // 의존관계 주입이 끝나면
+    @PostConstruct // 빈이 생성된 이후에
+    public void init() { // 의존관계 주입이 끝나면
         System.out.println("NetworkClient.init");
         connect();
         call("초기화 연결 메시지");
     }
 
-    public void close() throws Exception { // 빈이 사용된 후 종료될 때 호출
+    @PreDestroy // 빈이 소멸되기 전에
+    public void close() { // 빈이 사용된 후 종료될 때 호출
         System.out.println("NetworkClient.close");
         disconnect();
     }
